@@ -1,5 +1,7 @@
+import java.util.Map;
+import java.util.HashMap;
 public class Two_Sum {
-    public int[] twoSum(int[] nums, int target) {
+    public int[] twoSumBrute(int[] nums, int target) {
         int[] addends = {0,1};
         
         for(int i = 0; i < nums.length; i++){
@@ -9,6 +11,24 @@ public class Two_Sum {
                     addends[1] = j;
                 }
             }
+        }
+        return addends;
+    }
+
+    public int[] twoSumHash(int[] nums, int target) {
+        Map<Integer, Integer> mapNums = new HashMap<>();
+        int[] addends = new int[2];
+        int complement;
+
+        for(int i = 0; i < nums.length; i++){
+            complement = target - nums[i];
+
+            if(mapNums.containsKey(complement)){
+                addends[0] = mapNums.get(complement);
+                addends[1] = i;
+            }
+            mapNums.put(nums[i], i);
+
         }
         return addends;
     }
